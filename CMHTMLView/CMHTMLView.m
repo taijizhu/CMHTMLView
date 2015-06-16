@@ -27,8 +27,9 @@ void NSProfile(const char *name, void (^work)(void)) {
 #define kDefaultDocumentMeta        @"<meta name=\"viewport\" content=\"initial-scale=1.0; user-scalable=0; minimum-scale=1.0; maximum-scale=1.0\"/><meta name=\"apple-mobile-web-app-capable\" content=\"yes\"/>"
 
 #define kDefaultDocumentHtmlStyle   @"html {-webkit-touch-callout:none; -webkit-tap-highlight-color:rgba(0,0,0,0); -webkit-text-size-adjust:none; word-wrap:break-word;}"
-
-#define kDefaultDocumentBodyStyle   @"body {margin:0; padding:10px 9px; font-family:%@; font-size:%.0f; line-height:%.1f;} a:link {color: #3A75C4; text-decoration: underline;} img,video,iframe {display:block; padding:0 0 5px; margin:0 auto;} table {font-size:10px;} * {overflow-x:hidden;}"
+//vertical-align: bottom;
+// position: relative; top: 0%; transform: translateY(-100%);
+#define kDefaultDocumentBodyStyle   @"body {margin:0; padding:10px 9px; font-family:%@; font-size:%.0f; line-height:%.1f; } } a:link {color: #3A75C4; text-decoration: underline;} img,video,iframe {display:block; padding:0 0 5px; margin:0 auto;} table {font-size:10px;} * {overflow-x:hidden;}"
 
 #define kDefaultDocumentRotateStyle @"@media (orientation:portrait) { img,video,iframe,div {max-width:%.0fpx; height:auto;}} @media (orientation:landscape) { img,video,iframe,div {max-width:%.0fpx; height:auto;}}"
 
@@ -112,10 +113,10 @@ void NSProfile(const char *name, void (^work)(void)) {
     
     // Create <head> for page
     NSString *bodyStyle = [NSString stringWithFormat:kDefaultDocumentBodyStyle, self.fontFamily, self.fontSize, self.lineHeight];
-    NSString *rotateStyle = [NSString stringWithFormat:kDefaultDocumentRotateStyle, self.maxWidthPortrait - 18, self.maxWidthLandscape - 18];
+   // NSString *rotateStyle = [NSString stringWithFormat:kDefaultDocumentRotateStyle, self.maxWidthPortrait - 18, self.maxWidthLandscape - 18];
     
     // Create full page code
-    NSString *body = [NSString stringWithFormat:@"<html><head><script type=\"text/javascript\">%@</script> %@ <style type=\"text/css\">%@ %@ %@ %@</style></head><body>%@</body></html>", kFastClickJs, kDefaultDocumentMeta, kDefaultDocumentHtmlStyle, bodyStyle, rotateStyle, localacAdditionalStyle, loadHTML];
+    NSString *body = [NSString stringWithFormat:@"<html><head><script type=\"text/javascript\">%@</script> %@ <style type=\"text/css\">%@ %@ %@</style></head><body>%@</body></html>", kFastClickJs, kDefaultDocumentMeta, kDefaultDocumentHtmlStyle, bodyStyle, /*rotateStyle,*/ localacAdditionalStyle, loadHTML];
     
     // Start loading
     NSString *path = [[NSBundle mainBundle] bundlePath];
@@ -330,3 +331,4 @@ void NSProfile(const char *name, void (^work)(void)) {
 }
 
 @end
+
