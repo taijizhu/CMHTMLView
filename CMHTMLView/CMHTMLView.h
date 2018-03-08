@@ -27,6 +27,7 @@ typedef void (^SetImagePathBlock)(NSString *path);
 @property (nonatomic) NSString *defaultImagePath;
 @property (nonatomic) BOOL disableAHrefForImages;
 @property (nonatomic) NSString *additionalStyle;
+@property (nonatomic, assign) NSInteger letter_space;
 
 - (void)loadHtmlBody:(NSString *)html;
 - (void)prepareForReuse;
