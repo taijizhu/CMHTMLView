@@ -29,7 +29,7 @@ void NSProfile(const char *name, void (^work)(void)) {
 #define kDefaultDocumentHtmlStyle   @"html {-webkit-touch-callout:none; -webkit-tap-highlight-color:rgba(0,0,0,0); -webkit-text-size-adjust:none; word-wrap:break-word;}"
 //vertical-align: bottom;
 // position: relative; top: 0%; transform: translateY(-100%);
-#define kDefaultDocumentBodyStyle   @"body {margin:0; padding:10px 9px; font-family:%@; font-size:%.0f; line-height:%.1f; } } a:link {color: #3A75C4; text-decoration: underline;} img,video,iframe {display:block; padding:0 0 5px; margin:0 auto;} table {font-size:10px;} * {overflow-x:hidden;}"
+#define kDefaultDocumentBodyStyle   @"body {margin:0; padding:2px 2px; font-family:%@; font-size:%.0f; line-height:%.1f; letter-spacing:%dpx } } a:link {color: #3A75C4; text-decoration: underline;} img,video,iframe {display:block; padding:0 0 0px; margin:0 auto;} table {font-size:10px;} * {overflow-x:hidden;}"
 
 #define kDefaultDocumentRotateStyle @"@media (orientation:portrait) { img,video,iframe,div {max-width:%.0fpx; height:auto;}} @media (orientation:landscape) { img,video,iframe,div {max-width:%.0fpx; height:auto;}}"
 
@@ -112,7 +112,7 @@ void NSProfile(const char *name, void (^work)(void)) {
     }
     
     // Create <head> for page
-    NSString *bodyStyle = [NSString stringWithFormat:kDefaultDocumentBodyStyle, self.fontFamily, self.fontSize, self.lineHeight];
+    NSString *bodyStyle = [NSString stringWithFormat:kDefaultDocumentBodyStyle, self.fontFamily, self.fontSize, self.lineHeight, self.letter_space];
    // NSString *rotateStyle = [NSString stringWithFormat:kDefaultDocumentRotateStyle, self.maxWidthPortrait - 18, self.maxWidthLandscape - 18];
     
     // Create full page code
@@ -163,7 +163,8 @@ void NSProfile(const char *name, void (^work)(void)) {
     self.fontFamily = [CMHTMLView getSystemFont];
     self.fontSize = 14.0;
     self.lineHeight = 1.4;
-
+    self.letter_space = 1;
+    
     if (UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone) {
         self.maxWidthPortrait = [UIScreen mainScreen].bounds.size.width;
         self.maxWidthLandscape = [UIScreen mainScreen].bounds.size.height;
